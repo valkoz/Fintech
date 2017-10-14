@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Fintech</string>
+
+    <string name="enter_first_number">Enter number</string>
+    <string name="ok">Ок</string>
+    <string name="enter_first_digit">First</string>
+    <string name="enter_second_digit">Second</string>
+    <string name="enter_sign">Sign</string>
+    <string name="result">Result</string>
+
+    <string name="add">+</string>
+    <string name="sub">-</string>
+    <string name="div">:</string>
+    <string name="mul">*</string>
 </resources>
