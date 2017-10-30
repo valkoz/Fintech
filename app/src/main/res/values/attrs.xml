@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="Graph">
+        <attr name="xLabel" format="string" />
+        <attr name="yLabel" format="string" />
+        <attr name="plotColor" format="color" />
+    </declare-styleable>
+</resources>
