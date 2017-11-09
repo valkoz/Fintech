@@ -5,6 +5,8 @@ import android.arch.persistence.room.Room;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,6 +16,8 @@ import tinkoff.fintech.fintech.Async.GetNodeById;
 import tinkoff.fintech.fintech.Entity.Node;
 
 public class MainActivity extends AppCompatActivity {
+
+    ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +29,25 @@ public class MainActivity extends AppCompatActivity {
         MainViewModel model = ViewModelProviders.of(this).get(MainViewModel.class);
         model.setDatabase(db);
         model.addNodes(new Node(2));
-        model.addNodes(new Node(3), new Node(5));
+        model.addNodes(new Node(36), new Node(51));
 
-        List<Node> nodes = model.getNodes().getValue();
+        /*List<Node> nodes = model.getNodes().getValue();
 
         if (nodes != null) {
             Log.i("getAll:", model.getNodes().getValue().toString());
         }
-        getByIdTest(db);
+        getByIdTest(db);*/
 
-       /* model.getNodes().observe(this, nodes -> {
-            // update UI
-        });*/
+        lv = findViewById(R.id.list_view);
+        //TODO: implement custom adapter
+        model.getNodes().observe(this, nodes -> {
+            //TODO customAdapter method refresh and notifyDataChanged()
+            ArrayAdapter<Node> adapter = new ArrayAdapter(this,
+                    android.R.layout.simple_list_item_1, android.R.id.text1, nodes);
+            lv.setAdapter(adapter);
+        });
 
+        //TODO: Button onClickListener -> createNode activity
 
     }
 
