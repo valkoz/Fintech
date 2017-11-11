@@ -22,7 +22,7 @@ public interface NodeDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Node... nodes);
 
-    @Delete
-    void delete(Node node);
+    @Query("DELETE FROM Node")
+    void deleteAll();
 
 }
