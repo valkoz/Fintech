@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "database-name").build();
+                AppDatabase.class, "database-name").fallbackToDestructiveMigration().build();
 
         model = ViewModelProviders.of(this).get(MainViewModel.class);
         model.setDatabase(db);

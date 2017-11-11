@@ -6,8 +6,58 @@
     android:layout_height="match_parent"
     tools:context="tinkoff.fintech.fintech.ChildParentActivity">
 
-    <TextView
-        android:id="@+id/node_value"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/node_value"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="26sp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parents"
+                android:gravity="left"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="Children"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/parents_list"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#f00"></ListView>
+
+            <ListView
+                android:id="@+id/children_list"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="#0f0"></ListView>
+        </LinearLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
