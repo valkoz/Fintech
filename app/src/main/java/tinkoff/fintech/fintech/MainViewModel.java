@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import tinkoff.fintech.fintech.Async.AddNodeTask;
+import tinkoff.fintech.fintech.Async.GetChildrenTask;
 import tinkoff.fintech.fintech.Async.GetNodesTask;
+import tinkoff.fintech.fintech.Async.GetParentsTask;
 import tinkoff.fintech.fintech.Entity.Node;
 
 public class MainViewModel extends ViewModel {
@@ -51,5 +53,31 @@ public class MainViewModel extends ViewModel {
         addNodeTask.execute(node);
     }
 
+    public Boolean hasChildren(int id) {
+        GetChildrenTask getChildrenTask = new GetChildrenTask(db, id);
+        try {
+            Integer[] i = getChildrenTask.execute().get();
+            if (i.length > 0)
+                return true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
+    public Boolean hasParents(int id) {
+        GetParentsTask getParentsTask = new GetParentsTask(db, id);
+        try {
+            Integer[] i = getParentsTask.execute().get();
+            if (i.length > 0)
+                return true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

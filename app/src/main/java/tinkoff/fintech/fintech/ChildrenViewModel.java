@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutionException;
 
 import tinkoff.fintech.fintech.Async.AddChildrenTask;
 import tinkoff.fintech.fintech.Async.GetChildrenTask;
+import tinkoff.fintech.fintech.Async.GetNodesTask;
 import tinkoff.fintech.fintech.Async.GetParentsTask;
 import tinkoff.fintech.fintech.Entity.Node;
 import tinkoff.fintech.fintech.Entity.NodeWithChildren;
@@ -20,6 +21,7 @@ public class ChildrenViewModel extends ViewModel {
     private AppDatabase db;
     private MutableLiveData<Integer[]> children;
     private MutableLiveData<Integer[]> parents;
+    private MutableLiveData<List<Node>> nodes;
 
     public void setDatabase(AppDatabase database) {
         db = database;
@@ -67,5 +69,20 @@ public class ChildrenViewModel extends ViewModel {
             e.printStackTrace();
         }
         return parents;
+    }
+
+    public LiveData<List<Node>> getAllNodes() {
+        GetNodesTask getNodesTask = new GetNodesTask(db);
+
+        if (nodes == null)
+            nodes = new MutableLiveData<List<Node>>();
+        try {
+            nodes.postValue(getNodesTask.execute().get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return nodes;
     }
 }

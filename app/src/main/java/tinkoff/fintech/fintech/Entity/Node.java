@@ -18,4 +18,9 @@ public class Node {
     public String toString() {
         return String.valueOf(value);
     }
+
+    @NonNull
+    public int getValue() {
+        return value;
+    }
 }

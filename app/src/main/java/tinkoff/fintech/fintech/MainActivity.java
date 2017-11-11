@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         model.getNodes().observe(this, nodes -> {
             Log.i("Observer", nodes.toString());
-            ArrayAdapter<Node> adapter = new ArrayAdapter(this,
-                    android.R.layout.simple_list_item_1, android.R.id.text1, nodes);
+            ArrayAdapter<Node> adapter = new CustomListAdapter(this, nodes, model);
             lv.setAdapter(adapter);
         });
 
