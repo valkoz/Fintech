@@ -19,8 +19,8 @@ import tinkoff.fintech.fintech.Entity.NodeWithChildren;
 
 public class ChildrenViewModel extends ViewModel {
     private AppDatabase db;
-    private MutableLiveData<Integer[]> children;
-    private MutableLiveData<Integer[]> parents;
+    private MutableLiveData<List<Integer>> children;
+    private MutableLiveData<List<Integer>> parents;
     private MutableLiveData<List<Node>> nodes;
 
     public void setDatabase(AppDatabase database) {
@@ -41,11 +41,11 @@ public class ChildrenViewModel extends ViewModel {
         addNodeTask.execute(withChildren);
     }
 
-    public LiveData<Integer[]> getChildren(int id) {
+    public LiveData<List<Integer>> getChildren(int id) {
         GetChildrenTask getChildrenTask = new GetChildrenTask(db, id);
 
         if (children == null)
-            children = new MutableLiveData<Integer[]>();
+            children = new MutableLiveData<List<Integer>>();
         try {
             children.postValue(getChildrenTask.execute().get());
         } catch (InterruptedException e) {
@@ -56,11 +56,11 @@ public class ChildrenViewModel extends ViewModel {
         return children;
     }
 
-    public LiveData<Integer[]> getParents(int id) {
+    public LiveData<List<Integer>> getParents(int id) {
         GetParentsTask getParentsTask = new GetParentsTask(db, id);
 
         if (parents == null)
-            parents = new MutableLiveData<Integer[]>();
+            parents = new MutableLiveData<List<Integer>>();
         try {
             parents.postValue(getParentsTask.execute().get());
         } catch (InterruptedException e) {

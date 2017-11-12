@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         model.getNodes().observe(this, nodes -> {
-            Log.i("Observer", nodes.toString());
             ArrayAdapter<Node> adapter = new CustomListAdapter(this, nodes, model);
             lv.setAdapter(adapter);
         });

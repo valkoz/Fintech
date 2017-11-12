@@ -56,8 +56,8 @@ public class MainViewModel extends ViewModel {
     public Boolean hasChildren(int id) {
         GetChildrenTask getChildrenTask = new GetChildrenTask(db, id);
         try {
-            Integer[] i = getChildrenTask.execute().get();
-            if (i.length > 0)
+            List<Integer> i = getChildrenTask.execute().get();
+            if (!i.isEmpty())
                 return true;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -70,8 +70,8 @@ public class MainViewModel extends ViewModel {
     public Boolean hasParents(int id) {
         GetParentsTask getParentsTask = new GetParentsTask(db, id);
         try {
-            Integer[] i = getParentsTask.execute().get();
-            if (i.length > 0)
+            List<Integer> i = getParentsTask.execute().get();
+            if (!i.isEmpty())
                 return true;
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -18,8 +18,8 @@ public interface NodeWithClildrenDao {
     void addRelation(NodeWithChildren... withChildren);
 
     @Query("SELECT child from nodewithchildren WHERE node = (:id)")
-    Integer[] getChildren(int id);
+    List<Integer> getChildren(int id);
 
     @Query("SELECT node from nodewithchildren WHERE child = (:id)")
-    Integer[] getParents(int id);
+    List<Integer> getParents(int id);
 }

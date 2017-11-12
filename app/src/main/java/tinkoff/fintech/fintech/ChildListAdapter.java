@@ -11,15 +11,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import tinkoff.fintech.fintech.Entity.Node;
-
-public class CustomListAdapter extends ArrayAdapter<Node> {
+public class ChildListAdapter extends ArrayAdapter<Integer> {
 
     private final Activity context;
-    private List<Node> nodes;
-    private MainViewModel model;
+    private List<Integer> nodes;
+    private ChildrenViewModel model;
 
-    public CustomListAdapter(Activity context, List<Node> list, MainViewModel model) {
+    public ChildListAdapter(Activity context, List<Integer> list, ChildrenViewModel model) {
         super(context, R.layout.list_item, list);
         this.context = context;
         this.nodes = list;
@@ -39,19 +37,13 @@ public class CustomListAdapter extends ArrayAdapter<Node> {
             viewItem = convertView;
         }
 
-        Integer id = nodes.get(position).getValue();
+        Integer id = nodes.get(position).intValue();
         TextView tv = viewItem.findViewById(R.id.label);
         tv.setText(String.valueOf(id));
 
-        if (model.hasChildren(id) && model.hasParents(id))
-            viewItem.setBackgroundColor(Color.RED);
-        else if (model.hasChildren(id))
-            viewItem.setBackgroundColor(Color.YELLOW);
-        else if (model.hasParents(id))
-            viewItem.setBackgroundColor(Color.BLUE);
+        viewItem.setBackgroundColor(Color.GREEN);
 
         return viewItem;
     }
 
 }
-

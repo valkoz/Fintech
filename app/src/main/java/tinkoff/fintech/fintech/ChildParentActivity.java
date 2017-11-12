@@ -29,7 +29,6 @@ public class ChildParentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_parent);
 
-        //TODO: Don't rebuild -> getDatabase instead
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "database-name").build();
         initViews();
@@ -42,16 +41,12 @@ public class ChildParentActivity extends AppCompatActivity {
         addChildren(4, 5);
 
         model.getChildren(id).observe(this, nodes -> {
-            Log.i("Observer", nodes.toString());
-            ArrayAdapter<Node> adapter = new ArrayAdapter(this,
-                    android.R.layout.simple_list_item_1, android.R.id.text1, nodes);
+            ArrayAdapter<Integer> adapter = new ChildListAdapter(this, nodes, model);
             childrenList.setAdapter(adapter);
         });
 
         model.getParents(id).observe(this, nodes -> {
-            Log.i("Observer", nodes.toString());
-            ArrayAdapter<Node> adapter = new ArrayAdapter(this,
-                    android.R.layout.simple_list_item_1, android.R.id.text1, nodes);
+            ArrayAdapter<Integer> adapter = new ChildListAdapter(this, nodes, model);
             parentsList.setAdapter(adapter);
         });
 

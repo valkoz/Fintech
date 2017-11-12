@@ -49,15 +49,13 @@
                 android:id="@+id/parents_list"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="#f00"></ListView>
+                android:layout_weight="1"></ListView>
 
             <ListView
                 android:id="@+id/children_list"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="#0f0"></ListView>
+                android:layout_weight="1"></ListView>
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

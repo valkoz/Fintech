@@ -5,9 +5,8 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import tinkoff.fintech.fintech.AppDatabase;
-import tinkoff.fintech.fintech.Entity.Node;
 
-public class GetChildrenTask extends AsyncTask<Void, Void, Integer[]> {
+public class GetChildrenTask extends AsyncTask<Void, Void, List<Integer>> {
 
     private AppDatabase db;
     private int id;
@@ -18,8 +17,8 @@ public class GetChildrenTask extends AsyncTask<Void, Void, Integer[]> {
     }
 
     @Override
-    protected Integer[] doInBackground(Void... voids) {
-        Integer[] node = db.nodeWithClildrenDao().getChildren(id);
+    protected List<Integer> doInBackground(Void... voids) {
+        List<Integer> node = db.nodeWithClildrenDao().getChildren(id);
         return node;
     }
 
